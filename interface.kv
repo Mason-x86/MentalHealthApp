@@ -1,0 +1,537 @@
+WindowManager:
+    Home:
+    Log:
+    Diary:
+    Help:
+    Feeling:
+    Setting:
+
+
+<Home>:
+
+    name: "Home"
+    GridLayout:
+        cols:2
+        orientation: "vertical"
+
+        Spinner:
+            id: spinner_id
+            text: "|||"
+            values: ["Home", "Today", "Diary", "History", "Help", "Settings"]
+            # on_text: root.spinner_clicked(spinner_id.text, self)
+            font_size: 60
+            text_size:self.size
+            halign: "left"
+            valign: "middle"
+            color: 1, 0, 1, 1
+            size_hint_y: None
+            canvas.before:
+                Color:
+                    rgba: 0, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        Button:
+            text: 'Open'
+            font_size: 60
+            size_hint_y: None
+            # height: 44
+            on_press: root.on_button_click(spinner_id.text)
+    GridLayout:
+        cols: 1
+        pos_hint_y: 1
+        Label:
+            text: ""
+            font_size: 60
+            size_hint_y: None
+        Label:
+            text: "Safe Mind"
+            font_size: 60
+            text_size:self.size
+            halign: "left"
+            valign: "middle"
+            color: 1, 0, 1, 1
+            size_hint_y: None
+            canvas.before:
+                Color:
+                    rgba: 0, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            # size_hint: None, None
+
+
+<Feeling>:
+    name: "Today"
+    GridLayout:
+        cols:2
+        orientation: "vertical"
+
+        Spinner:
+            id: spinner_id
+            text: "|||"
+            values: ["Home", "Today", "Diary", "History", "Help", "Settings"]
+            font_size: 60
+            text_size:self.size
+            halign: "left"
+            valign: "middle"
+            color: 1, 0, 1, 1
+            size_hint_y: None
+            canvas.before:
+                Color:
+                    rgba: 0, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        Button:
+            text: 'Open'
+            font_size: 60
+            size_hint_y: None
+            # height: 44
+            on_press: root.on_button_click(spinner_id.text)
+
+    GridLayout:
+        cols: 1
+        pos_hint_y: 1
+        Label:
+            text: ""
+            font_size: 60
+            size_hint_y: None
+
+        Label:
+            text: "How are you feeling?"
+            font_size: 60
+            text_size:self.size
+            halign: "left"
+            valign: "middle"
+            color: 1, 0, 1, 1
+            size_hint_y: None
+
+            canvas.before:
+                Color:
+                    rgba: 0, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        Spinner:
+            id: emotion_id
+            text: "1-10"
+            values: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+            font_size: 60
+            text_size:self.size
+            halign: "center"
+            valign: "middle"
+            color: 1, 0, 1, 1
+            size_hint_y: None
+            canvas.before:
+                Color:
+                    rgba: 0, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        Button:
+            text: "Apply"
+            on_press: root.save_emotional_state(emotion_id.text)
+
+
+
+
+
+<Log>:
+    name: "History"
+    GridLayout:
+        cols:2
+        orientation: "vertical"
+
+        Spinner:
+            id: spinner_id
+            text: "|||"
+            values: ["Home", "Today", "Diary", "History", "Help", "Settings"]
+            font_size: 60
+            text_size:self.size
+            halign: "left"
+            valign: "middle"
+            color: 1, 0, 1, 1
+            size_hint_y: None
+            canvas.before:
+                Color:
+                    rgba: 0, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        Button:
+            text: 'Open'
+            font_size: 60
+            size_hint_y: None
+            # height: 44
+            on_press: root.on_button_click(spinner_id.text)
+
+    GridLayout:
+        cols: 2
+        Label:
+            text: ""
+            font_size: 60
+            size_hint_y: None
+
+        Label:
+            text: ""
+            font_size: 60
+            size_hint_y: None
+
+        Label:
+            text: "Enter Date yyyy-mm-dd"
+            font_size: 30
+            text_size:self.size
+            halign: "left"
+            valign: "middle"
+            size_hint_y: None
+
+
+        TextInput:
+            id: diary_date
+            font_size: 40
+            size_hint_y: None
+            text: "?-?-?"
+
+        Button:
+            text: 'Back'
+            id: back_button
+            font_size: 60
+            size_hint_y: None
+            on_press: root.change_page(diary_open, diary_date.text, back_button.text)
+
+        Button:
+            text: 'Next'
+            id: next_button
+            font_size: 60
+            size_hint_y: None
+            on_press: root.change_page(diary_open, diary_date.text, next_button.text)
+
+    GridLayout:
+        cols: 1
+
+        Label:
+            text: ""
+            font_size: 60
+            size_hint_y: None
+
+        Label:
+            text: ""
+            font_size: 60
+            size_hint_y: None
+
+        Label:
+            text: ""
+            font_size: 60
+            size_hint_y: None
+
+        Button:
+            text: 'Open Diary'
+            font_size: 60
+            size_hint_y: None
+            on_press: root.open_diary(diary_open, diary_date.text)
+            # height: 44
+            # on_press: root.on_button_click(spinner_id.text)
+
+        TextInput:
+            id: diary_open
+            font_size: 40
+            text: ""
+
+
+
+
+
+
+<Diary>:
+    name: "Diary"
+    GridLayout:
+        cols:2
+        orientation: "vertical"
+
+        Spinner:
+            id: spinner_id
+            text: "|||"
+            values: ["Home", "Today", "Diary", "History", "Help", "Settings"]
+            font_size: 60
+            text_size:self.size
+            halign: "left"
+            valign: "middle"
+            color: 1, 0, 1, 1
+            size_hint_y: None
+            canvas.before:
+                Color:
+                    rgba: 0, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+        Button:
+            text: 'Open'
+            font_size: 60
+            size_hint_y: None
+            # height: 44
+            on_press: root.on_button_click(spinner_id.text)
+
+    GridLayout:
+        cols: 1
+        pos_hint_y: 1
+        Label:
+            text: ""
+            font_size: 60
+            size_hint_y: None
+        Label:
+            text: "Diary"
+            size_hint_y: None
+            font_size: 60
+            text_size:self.size
+            halign: "left"
+            valign: "middle"
+            color: 1, 0, 1, 1
+            size_hint_y: None
+            canvas.before:
+                Color:
+                    rgba: 0, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        TextInput:
+            id: diary_entry
+            font_size: 20
+
+        Button:
+            text: "save"
+            font_size: 60
+            size_hint_y: None
+            text_size:self.size
+            halign: "left"
+            valign: "middle"
+            color: 1, 0, 1, 1
+            size_hint_y: None
+            on_press: root.write_order_to_text(diary_entry.text)
+            canvas.before:
+                Color:
+                    rgba: 0, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+<Help>:
+    name: "Help"
+    GridLayout:
+        cols:2
+        orientation: "vertical"
+
+        Spinner:
+            id: spinner_id
+            text: "|||"
+            values: ["Home", "Today", "Diary", "History", "Help", "Settings"]
+            font_size: 60
+            text_size:self.size
+            halign: "left"
+            valign: "middle"
+            color: 1, 0, 1, 1
+            size_hint_y: None
+            canvas.before:
+                Color:
+                    rgba: 0, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        Button:
+            text: 'Open'
+            font_size: 60
+            size_hint_y: None
+            # height: 44
+            on_press: root.on_button_click(spinner_id.text)
+
+    GridLayout:
+        cols: 1
+        pos_hint_y: 1
+        Label:
+            text: ""
+            font_size: 60
+            size_hint_y: None
+
+        Label:
+            text: "Help"
+            font_size: 60
+            text_size:self.size
+            halign: "left"
+            valign: "middle"
+            color: 1, 0, 1, 1
+            size_hint_y: None
+            canvas.before:
+                Color:
+                    rgba: 0, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+<Setting>:
+    name: "Settings"
+    GridLayout:
+        cols:2
+        orientation: "vertical"
+
+        Spinner:
+            id: spinner_id
+            text: "|||"
+            values: ["Home", "Today", "Diary", "History", "Help", "Settings"]
+            font_size: 60
+            text_size:self.size
+            halign: "left"
+            valign: "middle"
+            color: 1, 0, 1, 1
+            size_hint_y: None
+            canvas.before:
+                Color:
+                    rgba: 0, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        Button:
+            text: 'Open'
+            font_size: 60
+            size_hint_y: None
+            # height: 44
+            on_press: root.on_button_click(spinner_id.text)
+
+    GridLayout:
+        cols: 1
+        pos_hint_y: 1
+        Label:
+            text: ""
+            font_size: 60
+            size_hint_y: None
+        Label:
+            text: "Settings"
+            font_size: 60
+            text_size:self.size
+            halign: "left"
+            valign: "middle"
+            color: 1, 0, 1, 1
+            size_hint_y: None
+            canvas.before:
+                Color:
+                    rgba: 0, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+    GridLayout:
+        cols: 2
+        pos_hint_y: 2
+        Label:
+            text: ""
+            font_size: 120
+            size_hint_y: None
+        Label:
+            text: ""
+            font_size: 120
+            size_hint_y: None
+        Label:
+            text: ""
+            font_size: 120
+            size_hint_y: None
+        Label:
+            text: ""
+            font_size: 120
+            size_hint_y: None
+
+        Label:
+            text: "Font Size"
+            font_size: 60
+            text_size:self.size
+            halign: "left"
+            valign: "middle"
+            color: 1, 0, 1, 1
+            size_hint_y: None
+            canvas.before:
+                Color:
+                    rgba: 0, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+        Spinner:
+            id: font_size_id
+            text: "|||"
+            values: ["Small", "Medium", "Large"]
+            font_size: 60
+            text_size:self.size
+            halign: "left"
+            valign: "middle"
+            color: 1, 0, 1, 1
+            size_hint_y: None
+            canvas.before:
+                Color:
+                    rgba: 0, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        Label:
+            text: "foreground colour"
+            font_size: 60
+            text_size:self.size
+            halign: "left"
+            valign: "middle"
+            color: 1, 0, 1, 1
+            size_hint_y: None
+            canvas.before:
+                Color:
+                    rgba: 0, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        Spinner:
+            id: forecolour_id
+            text: "|||"
+            values: ["Black", "White", "Blue",  "Red", "Green", "Yellow"]
+            font_size: 60
+            text_size:self.size
+            halign: "left"
+            valign: "middle"
+            color: 1, 0, 1, 1
+            size_hint_y: None
+            canvas.before:
+                Color:
+                    rgba: 0, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+        Label:
+            text: ""
+            font_size: 600
+        Label:
+            text: ""
+            font_size: 600
+        Label:
+            text: ""
+            font_size: 600
+        Label:
+            text: ""
+            font_size: 600
+        Label:
+            text: ""
+            font_size: 600
+        Label:
+            text: ""
+            font_size: 600
+        Label:
+            text: ""
+            font_size: 600
+        Label:
+            text: ""
+            font_size: 600
+        Button:
+            text: "apply"
+
